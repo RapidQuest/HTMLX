@@ -44,7 +44,7 @@ class Handler(FileSystemEventHandler):
                 complileDir(path,mode=mode)
 
 def strip_lines(content):
-    exclude_list = [r"console\.log\(.*\);?","debugger;?"]
+    exclude_list = [r"console\.log\(([^()]?(\([^()]*\))?)*\);?","debugger;?"]
     m = re.search("|".join(exclude_list),content)
     if m:
         print("Found expression in exclude_list",m.group(0))
@@ -119,7 +119,7 @@ def compileHTML(directory,filename,mode):
     except:
         print("unable to open file",directory+"/dist/"+filename.replace(".htmlx",".html"))            
     
-    return "Sucess..."    
+    return "Success..."    
 
 
 def complileDir(directory,mode):    
