@@ -55,7 +55,7 @@ def strip_lines(content):
 def compileHTML(directory,filename,mode):
     try:
         fin = os.path.join(directory, filename) 
-        content = open(fin).readlines()
+        content = open(fin,encoding="utf8").readlines()
     except:
         return "Cannot Read Input File",directory,filename     
      
@@ -114,10 +114,10 @@ def compileHTML(directory,filename,mode):
 
     content = ''.join(content)
     try:     
-        fout = open(directory+"/dist/"+filename.replace(".htmlx",".html"),"w+")
+        fout = open(directory+"/dist/"+filename.replace(".htmlx",".html"),"w+",encoding="utf8")
         fout.write(content)         
-    except:
-        print("unable to open file",directory+"/dist/"+filename.replace(".htmlx",".html"))            
+    except Exception as e:
+        print("unable to open file",directory+"/dist/"+filename.replace(".htmlx",".html"),e)            
     
     return "Success..."    
 
